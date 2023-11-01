@@ -31,6 +31,10 @@ function Edit (props) {
 		})
 		// retorna o novo array com os valores e coloca dentro da prop answers
 		props.setAttributes({ answers: newAnswers})
+
+		if( indextoDelete === props.attributes.correctAnswer){
+			props.setAttributes({correctAnswer: undefined})
+		}
 	}
 
 	function markAsCorrect(index){

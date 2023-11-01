@@ -156,6 +156,11 @@ function Edit(props) {
     props.setAttributes({
       answers: newAnswers
     });
+    if (indextoDelete === props.attributes.correctAnswer) {
+      props.setAttributes({
+        correctAnswer: undefined
+      });
+    }
   }
   function markAsCorrect(index) {
     props.setAttributes({
