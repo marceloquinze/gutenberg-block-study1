@@ -25,8 +25,14 @@ class AreYouPaying{
 	}
 
 	function theHTML($attr){
+		if( !is_admin()){
+			// wp-element contém a versão WP do React
+			wp_enqueue_script('attentionFrontend', plugin_dir_url(__FILE__) . 'build/frontend.js', array('wp-element'));
+			wp_enqueue_style('attentionFrontendStyles', plugin_dir_url(__FILE__) . 'build/frontend.css');
+		}
+
 		ob_start(); ?>
-			<h3>Today the sky is fully <?php echo esc_html( $attr['skyColor'] ) ?> and the grass is <?php echo esc_html( $attr['grassColor'] ) ?>!</h3>
+		<div class="paying-attention-update-me"></div>
 		<?php return ob_get_clean();
 	}
 }
