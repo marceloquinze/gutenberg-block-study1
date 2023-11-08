@@ -171,6 +171,10 @@ wp.blocks.registerBlockType('ourplugin/are-you-paying-attention', {
     correctAnswer: {
       type: "number",
       default: undefined
+    },
+    bgColor: {
+      type: "string",
+      default: "#EBEBEB"
     }
   },
   edit: Edit,
@@ -207,10 +211,20 @@ function Edit(props) {
     });
   }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "paying-attention-edit-block"
+    className: "paying-attention-edit-block",
+    style: {
+      backgroundColor: props.attributes.bgColor
+    }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-    title: "Background Color"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, "Hello!"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    title: "Background Color",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+    color: props.attributes.bgColor,
+    onChangeComplete: x => props.setAttributes({
+      bgColor: x.hex
+    }),
+    disableAlpha: true
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     label: "Question: ",
     value: props.attributes.question,
     onChange: updateQuestion,

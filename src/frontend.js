@@ -9,6 +9,7 @@ const divsToUpdate = document.querySelectorAll('.paying-attention-update-me');
 divsToUpdate.forEach(
 	div => {
 		const data = JSON.parse(div.querySelector("pre").innerHTML)
+		// ...data significa desestruturar props.attributes
 		ReactDOM.render(<Quiz {...data} />, div)
 		div.classList.remove('paying-attention-update-me')
 	}
@@ -52,7 +53,7 @@ function Quiz(props){
 	}, [isCorrect] );
 
 	return(
-		<div className="paying-attention-frontend">
+		<div className="paying-attention-frontend" style={{backgroundColor: props.bgColor}}>
 			<p>{props.question}</p>
 			<ul>
 				{props.answers.map( function(answer, index) {

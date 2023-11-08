@@ -1,5 +1,5 @@
 import './index.scss';
-import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow} from '@wordpress/components';
+import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow, ColorPicker} from '@wordpress/components';
 // Importa componentes de UI para o editor (barra do inpetor de elementos)
 import {InspectorControls} from '@wordpress/block-editor'
 
@@ -37,7 +37,8 @@ wp.blocks.registerBlockType('ourplugin/are-you-paying-attention', {
 	attributes:{
 		question: { type: "string"},
 		answers: {type: "array", default: [""]},
-		correctAnswer: {type: "number", default: undefined}
+		correctAnswer: {type: "number", default: undefined},
+		bgColor: {type: "string", default: "#EBEBEB"}
 	},
 	edit: Edit,
 	save: function (props) {
@@ -71,11 +72,11 @@ function Edit (props) {
 	}
 
 	return (
-		<div className="paying-attention-edit-block">
+		<div className="paying-attention-edit-block" style={{backgroundColor: props.attributes.bgColor}}>
 			<InspectorControls>
-				<PanelBody title='Background Color'>
+				<PanelBody title='Background Color' initialOpen={true}>
 					<PanelRow>
-						Hello!
+						<ColorPicker color={props.attributes.bgColor} onChangeComplete={x => props.setAttributes({bgColor: x.hex })} disableAlpha={true} />
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>

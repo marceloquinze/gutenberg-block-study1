@@ -123,6 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 const divsToUpdate = document.querySelectorAll('.paying-attention-update-me');
 divsToUpdate.forEach(div => {
   const data = JSON.parse(div.querySelector("pre").innerHTML);
+  // ...data significa desestruturar props.attributes
   react_dom__WEBPACK_IMPORTED_MODULE_1___default().render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(Quiz, {
     ...data
   }), div);
@@ -163,7 +164,10 @@ function Quiz(props) {
     }
   }, [isCorrect]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "paying-attention-frontend"
+    className: "paying-attention-frontend",
+    style: {
+      backgroundColor: props.bgColor
+    }
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map(function (answer, index) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
       className: (isCorrectDelayed === true && index == props.correctAnswer ? "no-click" : "") + (isCorrectDelayed === true && index !== props.correctAnswer ? "fade-incorrect" : ""),
