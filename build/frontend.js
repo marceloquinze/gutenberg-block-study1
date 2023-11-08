@@ -168,7 +168,11 @@ function Quiz(props) {
     style: {
       backgroundColor: props.bgColor
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map(function (answer, index) {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      textAlign: props.theAlignment
+    }
+  }, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map(function (answer, index) {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
       className: (isCorrectDelayed === true && index == props.correctAnswer ? "no-click" : "") + (isCorrectDelayed === true && index !== props.correctAnswer ? "fade-incorrect" : ""),
       onClick: isCorrect === true ? undefined : () => handleAnswer(index)
