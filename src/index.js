@@ -1,5 +1,7 @@
 import './index.scss';
-import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon} from '@wordpress/components';
+import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow} from '@wordpress/components';
+// Importa componentes de UI para o editor (barra do inpetor de elementos)
+import {InspectorControls} from '@wordpress/block-editor'
 
 (function(){
 
@@ -70,6 +72,13 @@ function Edit (props) {
 
 	return (
 		<div className="paying-attention-edit-block">
+			<InspectorControls>
+				<PanelBody title='Background Color'>
+					<PanelRow>
+						Hello!
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
 			<TextControl label='Question: ' value={props.attributes.question} onChange={updateQuestion} style={{fontSize:"20px"}} />
 			<p style={{fontSize: "13px", margin: "20px 0 8px 0"}}>Answers:</p>
 			{props.attributes.answers.map(

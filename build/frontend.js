@@ -129,7 +129,13 @@ divsToUpdate.forEach(div => {
   div.classList.remove('paying-attention-update-me');
 });
 function Quiz(props) {
+  // useState controla estados da aplicação. Toda vez que ela muda, o componente Quiz é renderizado novamente
+  // Começamos com estado com valor undefined, depois passa para true ou false
   const [isCorrect, setIsCorrect] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);
+  // useState retorna um array. O primeiro item permite acessar o valor do estado
+  // o segundo é uma funcao que modfiica/atualiza o valor do estado
+
+  const [isCorrectDelayed, setIsCorrectDelayed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);
   function handleAnswer(index) {
     if (index == props.correctAnswer) {
       setIsCorrect(true);
@@ -137,11 +143,49 @@ function Quiz(props) {
       setIsCorrect(false);
     }
   }
+
+  // estamos esperando uma mudança no valor de isCorrect (segundo arg, um array de valores)
+  // se mudar para false, roda uma função qualquer. No caso, rodamos um timeout de 2600 e mudamos o valor de isCorrect para undefined
+  // isso garante que se possa clicar mais de uma vez numa resposta errada
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // só que isso só ocorre se isCorrect for false.
+    if (isCorrect === false) {
+      setTimeout(() => {
+        setIsCorrect(undefined);
+      }, 2600);
+    }
+
+    // se isCOrrect for true, vamos passar outro useState para acionar uma animação
+    if (isCorrect === true) {
+      setTimeout(() => {
+        setIsCorrectDelayed(true);
+      }, 1000);
+    }
+  }, [isCorrect]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "paying-attention-frontend"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map((answer, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    onClick: () => handleAnswer(index)
-  }, answer))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answers.map(function (answer, index) {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+      className: (isCorrectDelayed === true && index == props.correctAnswer ? "no-click" : "") + (isCorrectDelayed === true && index !== props.correctAnswer ? "fade-incorrect" : ""),
+      onClick: isCorrect === true ? undefined : () => handleAnswer(index)
+    }, isCorrectDelayed === true && index == props.correctAnswer && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "20",
+      height: "20",
+      className: "bi bi-check",
+      viewBox: "0 0 16 16"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+    })), isCorrectDelayed === true && index !== props.correctAnswer && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "20",
+      height: "20",
+      className: "bi bi-x",
+      viewBox: "0 0 16 16"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+    })), answer);
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "correct-message" + (isCorrect === true ? " correct-message--visible" : "")
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
