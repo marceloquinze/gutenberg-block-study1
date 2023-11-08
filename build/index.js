@@ -170,46 +170,19 @@ __webpack_require__.r(__webpack_exports__);
   });
 })();
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__.registerBlockType)('ourplugin/are-you-paying-attention', {
-  title: 'Are you paying attention?',
-  icon: 'smiley',
-  category: 'common',
-  attributes: {
-    question: {
-      type: "string"
-    },
-    answers: {
-      type: "array",
-      default: [""]
-    },
-    correctAnswer: {
-      type: "number",
-      default: undefined
-    },
-    bgColor: {
-      type: "string",
-      default: "#EBEBEB"
-    },
-    theAlignment: {
-      type: "string",
-      default: "left"
-    }
-  },
-  description: "Just a description",
-  example: {
-    attributes: {
-      question: "Test Question",
-      answers: ["Number 1", "Number 2", "Number 3"],
-      correctAnswer: 1,
-      bgColor: "#EBEBEB",
-      theAlignment: "left"
-    }
-  },
   edit: Edit,
   save: function (props) {
+    // preciso mesmo passar props?
     return null;
   }
 });
 function Edit(props) {
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
+    className: "paying-attention-edit-block",
+    style: {
+      backgroundColor: props.attributes.bgColor
+    }
+  });
   function updateQuestion(value) {
     props.setAttributes({
       question: value
@@ -238,10 +211,7 @@ function Edit(props) {
     });
   }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "paying-attention-edit-block",
-    style: {
-      backgroundColor: props.attributes.bgColor
-    }
+    ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.AlignmentToolbar, {
     value: props.attributes.theAlignment,
     onChange: x => props.setAttributes({

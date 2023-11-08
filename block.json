@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ourplugin/are-you-paying-attention",
+	"version": "1.0.0",
+	"title": "Are You Paying Attention",
+	"category": "common",
+	"icon": "smiley",
+	"description": "Example static block scaffolded with Create Block tool.",
+	"attributes": {
+		"question": {
+			"type": "string"
+		},
+		"answers": {
+			"type": "array",
+			"default": [
+				""
+			]
+		},
+		"correctAnswer": {
+			"type": "number",
+			"default": "undefined"
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "#EBEBEB"
+		},
+		"theAlignment": {
+			"type": "string",
+			"default": "left"
+		}
+	},
+	"example": {
+		"attributes": {
+			"question": "Test Question",
+			"answers": [
+				"Number 1",
+				"Number 2",
+				"Number 3"
+			],
+			"correctAnswer": 1,
+			"bgColor": "#EBEBEB",
+			"theAlignment": "left"
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "areyoupaying",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"viewScript": "file:./build/frontend.js",
+	"style": "file:./build/frontend.css"
+}

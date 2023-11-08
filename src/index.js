@@ -2,7 +2,7 @@ import './index.scss';
 import { registerBlockType } from '@wordpress/blocks';
 import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow, ColorPicker} from '@wordpress/components';
 // Importa componentes estruturaus de UI para o editor (barra direita do inspetor, controles superiores de blocos, alinhamento etc)
-import {InspectorControls, BlockControls, AlignmentToolbar} from '@wordpress/block-editor'
+import {InspectorControls, BlockControls, AlignmentToolbar, useBlockProps} from '@wordpress/block-editor'
 
 (function(){
 
@@ -32,34 +32,19 @@ import {InspectorControls, BlockControls, AlignmentToolbar} from '@wordpress/blo
 })()
 
 registerBlockType('ourplugin/are-you-paying-attention', {
-	title: 'Are you paying attention?',
-	icon: 'smiley',
-	category: 'common',
-	attributes:{
-		question: { type: "string"},
-		answers: {type: "array", default: [""]},
-		correctAnswer: {type: "number", default: undefined},
-		bgColor: {type: "string", default: "#EBEBEB"},
-		theAlignment: {type: "string", default: "left"}
-	},
-	description: "Just a description",
-	example: {
-		attributes:{
-			question: "Test Question",
-			answers: ["Number 1", "Number 2", "Number 3"],
-			correctAnswer: 1,
-			bgColor: "#EBEBEB",
-			theAlignment: "left"
-		}
-	},
 	edit: Edit,
-	save: function (props) {
+	save: function (props) { // preciso mesmo passar props?
 		return null;
 	},
 });
 
 
 function Edit (props) {
+	const blockProps = useBlockProps({
+		className: "paying-attention-edit-block",
+		style: {backgroundColor: props.attributes.bgColor}
+	});
+
 	function updateQuestion(value){
 		props.setAttributes({question: value})
 	}
@@ -84,7 +69,7 @@ function Edit (props) {
 	}
 
 	return (
-		<div className="paying-attention-edit-block" style={{backgroundColor: props.attributes.bgColor}}>
+		<div {...blockProps}>
 			<BlockControls>
 				<AlignmentToolbar value={props.attributes.theAlignment} onChange={x => props.setAttributes({theAlignment: x})} />
 			</BlockControls>
