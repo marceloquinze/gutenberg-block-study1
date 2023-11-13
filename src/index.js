@@ -4,6 +4,7 @@ import './index.scss';
 import metadata from '../block.json';
 import { registerBlockType } from '@wordpress/blocks';
 import edit from './edit'
+import save from './save'
 
 (function(){
 
@@ -34,7 +35,5 @@ import edit from './edit'
 
 registerBlockType( metadata, { //metadata é o block.json
 	edit,
-	save: function (props) { // preciso mesmo passar props?
-		return null;
-	},
+	save
 });
