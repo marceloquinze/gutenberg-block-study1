@@ -15,6 +15,7 @@ class AreYouPaying{
 	}
 
 	function adminAssets(){
+		// block.json: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
 		register_block_type( __DIR__ , array(
 			// Renderizando o frontend com PHP ao invés de JSX
 			'render_callback' => array( $this, 'renderHTML')
