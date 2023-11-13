@@ -23,7 +23,7 @@ export default function edit (props) {
 		props.setAttributes({ answers: newAnswers})
 
 		if( indextoDelete === props.attributes.correctAnswer){
-			props.setAttributes({correctAnswer: undefined})
+			props.setAttributes({correctAnswer: null})
 		}
 	}
 
@@ -50,7 +50,7 @@ export default function edit (props) {
 					return(
 						<Flex>
 							<FlexBlock>
-								<TextControl autoFocus={answer == undefined} value={answer} onChange={ newValue =>{
+								<TextControl autoFocus={answer == null} value={answer} onChange={ newValue =>{
 									// faz uma cópia do array answers (prop) e usa concat pra adicionar ESTE elemento ao array original, mas criando um novo array
 									const newAnswers =  props.attributes.answers.concat([]);
 									// novo valor adicionado ao novo array
@@ -74,7 +74,7 @@ export default function edit (props) {
 			)}
 			<Button isPrimary onClick={ () => {
 				// setAttributes pode ser chamada aqui diretamente
-				props.setAttributes({answers: props.attributes.answers.concat([undefined])})
+				props.setAttributes({answers: props.attributes.answers.concat([null])})
 			}}>Add another answer</Button>
 		</div>
 	);

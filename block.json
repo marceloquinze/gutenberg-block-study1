@@ -19,7 +19,7 @@
 		},
 		"correctAnswer": {
 			"type": "number",
-			"default": "undefined"
+			"default": null
 		},
 		"bgColor": {
 			"type": "string",
