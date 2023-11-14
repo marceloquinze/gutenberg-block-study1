@@ -34,6 +34,8 @@ import save from './save'
 })()
 
 registerBlockType( metadata, { //metadata é o block.json
+	// edit mostra no backend, editor
 	edit,
+	// save salva no banco de dados e depois usa os dados salvos para mostrar no frontend
 	save
 });

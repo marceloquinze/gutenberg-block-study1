@@ -2,6 +2,8 @@ import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRo
 // Importa componentes estruturaus de UI para o editor (barra direita do inspetor, controles superiores de blocos, alinhamento etc)
 import {InspectorControls, BlockControls, AlignmentToolbar, useBlockProps} from '@wordpress/block-editor'
 
+// props equivale ao meio de campo entre edit e os atributos
+// props são os próprios atributos
 export default function edit (props) {
 	const blockProps = useBlockProps({
 		className: "paying-attention-edit-block",
@@ -31,6 +33,7 @@ export default function edit (props) {
 		props.setAttributes({correctAnswer: index})
 	}
 
+	// abaixo, onChange chama uma fn todas as vezes que um elemento muda de valor
 	return (
 		<div {...blockProps}>
 			<BlockControls>
